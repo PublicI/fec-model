@@ -127,7 +127,7 @@ module.exports = {
                                   )
                               )
                           ]
-                        : 'contributor_state',
+                        : ['contributor_state'],
                 transaction
             });
         });

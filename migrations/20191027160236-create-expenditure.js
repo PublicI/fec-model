@@ -127,7 +127,7 @@ module.exports = {
                                   )
                               )
                           ]
-                        : 'payee_state',
+                        : ['payee_state'],
                 transaction
             });
         });
