@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-    up: (queryInterface, DataTypes) => {
-        return queryInterface.sequelize.transaction(async transaction => {
+    up: (queryInterface, DataTypes) =>
+        queryInterface.sequelize.transaction(async transaction => {
             await queryInterface.createTable(
                 'fec_expenditures',
                 {
@@ -32,7 +32,7 @@ module.exports = {
                     election_code: DataTypes.STRING(30),
                     election_other_description: DataTypes.STRING(255),
                     expenditure_date: DataTypes.DATEONLY,
-                    expenditure_amount: DataTypes.DECIMAL(12,2),
+                    expenditure_amount: DataTypes.DECIMAL(12, 2),
                     semi_annual_refunded_bundled_amt: DataTypes.STRING(50),
                     expenditure_purpose_descrip: DataTypes.STRING(255),
                     category_code: DataTypes.STRING(10),
@@ -57,7 +57,9 @@ module.exports = {
                     memo_text_description: DataTypes.STRING(200),
                     back_reference_tran_id_number: DataTypes.STRING(255),
                     back_reference_sched_name: DataTypes.STRING(100),
-                    reference_to_si_or_sl_system_code_that_identifies_the_account: DataTypes.STRING(50)
+                    reference_to_si_or_sl_system_code_that_identifies_the_account: DataTypes.STRING(
+                        50
+                    )
                 },
                 { transaction }
             );
@@ -122,18 +124,14 @@ module.exports = {
                         ? [
                               queryInterface.sequelize.fn(
                                   'upper',
-                                  queryInterface.sequelize.col(
-                                      'payee_state'
-                                  )
+                                  queryInterface.sequelize.col('payee_state')
                               )
                           ]
                         : ['payee_state'],
                 transaction
             });
-        });
-    },
+        }),
 
-    down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('fec_expenditures');
-    }
+    down: (queryInterface, Sequelize) =>
+        queryInterface.dropTable('fec_expenditures')
 };

@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-    up: (queryInterface, Sequelize) => {
-        return queryInterface.sequelize.query(`
+    up: (queryInterface, Sequelize) =>
+        queryInterface.sequelize.query(`
             CREATE VIEW fec_amended_filings AS
             SELECT MAX(fec_filings.filing_id) AS filing_id,
                    fec_filings.report_id AS report_id,
@@ -19,12 +19,10 @@ module.exports = {
                     ON ((fec_filings.filing_id = fec_filings2.report_id)))
             WHERE (fec_filings2.report_id IS NULL
                    AND fec_filings.report_id IS NULL);
-        `);
-    },
+        `),
 
-    down: (queryInterface, Sequelize) => {
-        return queryInterface.sequelize.query(`
+    down: (queryInterface, Sequelize) =>
+        queryInterface.sequelize.query(`
             DROP VIEW fec_amended_filings;
-        `);
-    }
+        `)
 };

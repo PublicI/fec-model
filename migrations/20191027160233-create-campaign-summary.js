@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-    up: (queryInterface, DataTypes) => {
-        return queryInterface.sequelize.transaction(async transaction => {
+    up: (queryInterface, DataTypes) =>
+        queryInterface.sequelize.transaction(async transaction => {
             await queryInterface.createTable(
                 'fec_campaign_summaries',
                 {
@@ -170,10 +170,8 @@ module.exports = {
                 ['filer_committee_id_number'],
                 { transaction }
             );
-        });
-    },
+        }),
 
-    down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('fec_campaign_summaries');
-    }
+    down: (queryInterface, Sequelize) =>
+        queryInterface.dropTable('fec_campaign_summaries')
 };
